@@ -318,6 +318,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324751152}
   m_CullTransparentMesh: 1
+--- !u!114 &336517622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 402802763739150719, guid: 5a2ecbd12aa24204db81cd390a36cead, type: 3}
+  m_PrefabInstance: {fileID: 791972405}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548693601a1012c4e9d9c45f04f1ec41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &336517624 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7919548145640237169, guid: 5a2ecbd12aa24204db81cd390a36cead, type: 3}
+  m_PrefabInstance: {fileID: 791972405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &369571449 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7930627290240713637, guid: 5a2ecbd12aa24204db81cd390a36cead, type: 3}
+  m_PrefabInstance: {fileID: 791972405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &369571451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369571449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 147c48c7bac43e74dbb9f9dd0b084413, type: 2}
+    - {fileID: 11400000, guid: 59be64c11e9a3d244b9f44e69df560c7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 336517622}
+          m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1645872260}
+          m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+          m_MethodName: Load
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &431085599
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,8 +688,8 @@ Camera:
   m_GameObject: {fileID: 789790118}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -854,76 +920,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7731340727036010959, guid: 5a2ecbd12aa24204db81cd390a36cead, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7930627290240713637, guid: 5a2ecbd12aa24204db81cd390a36cead, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 791972409}
+      addedObject: {fileID: 369571451}
   m_SourcePrefab: {fileID: 100100000, guid: 5a2ecbd12aa24204db81cd390a36cead, type: 3}
---- !u!95 &791972406 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1531882058896821617, guid: 5a2ecbd12aa24204db81cd390a36cead, type: 3}
-  m_PrefabInstance: {fileID: 791972405}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &791972407 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9021483505478802559, guid: 5a2ecbd12aa24204db81cd390a36cead, type: 3}
-  m_PrefabInstance: {fileID: 791972405}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791972408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548693601a1012c4e9d9c45f04f1ec41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &791972408 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7731340727036010959, guid: 5a2ecbd12aa24204db81cd390a36cead, type: 3}
-  m_PrefabInstance: {fileID: 791972405}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &791972409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791972408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 147c48c7bac43e74dbb9f9dd0b084413, type: 2}
-    - {fileID: 11400000, guid: 59be64c11e9a3d244b9f44e69df560c7, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 791972407}
-          m_TargetAssemblyTypeName: SoundHandler, Assembly-CSharp
-          m_MethodName: Play
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 1
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1645872260}
-          m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-          m_MethodName: Load
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &885913260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,7 +1113,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 11
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -2202,9 +2202,9 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -4089099265331823780, guid: 2a26fd9acc5039e439b1446f74002c89, type: 2}
-    value: {fileID: 791972406}
+    value: {fileID: 336517624}
   - key: {fileID: -6913003533771410418, guid: 2a26fd9acc5039e439b1446f74002c89, type: 2}
-    value: {fileID: 791972409}
+    value: {fileID: 369571451}
   - key: {fileID: -1371751225784426406, guid: 2a26fd9acc5039e439b1446f74002c89, type: 2}
     value: {fileID: 789790124}
   - key: {fileID: -6870700491375680016, guid: 2a26fd9acc5039e439b1446f74002c89, type: 2}

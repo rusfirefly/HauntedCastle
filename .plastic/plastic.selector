@@ -1,4 +1,0 @@
-repository "HauntedCastle@fireflyvit@cloud"
-  path "/"
-    br "/main"
-    co "/main"

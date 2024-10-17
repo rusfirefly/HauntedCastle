@@ -428,7 +428,7 @@ public class FirstPersonController : MonoBehaviour
                 
                 rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-                _soundHandler.Play(pitch: 2f);
+                _soundHandler.Play(pitch: 1.5f);
             }
             // All movement calculations while walking
             else
