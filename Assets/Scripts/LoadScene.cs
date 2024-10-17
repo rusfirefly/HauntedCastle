@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    [SerializeField] private int _currentLevelNumber;
+    [SerializeField] private int _nextLevelNumber;
 
     public void Load()
     {
@@ -13,7 +13,7 @@ public class LoadScene : MonoBehaviour
 
     private IEnumerator AsynkLoad()
     {
-        AsyncOperation asynkLoad = SceneManager.LoadSceneAsync(_currentLevelNumber++);
+        AsyncOperation asynkLoad = SceneManager.LoadSceneAsync(_nextLevelNumber);
 
         while (asynkLoad.isDone == false)
         {
