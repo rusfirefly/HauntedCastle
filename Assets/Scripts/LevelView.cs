@@ -6,6 +6,7 @@ public class LevelView : MonoBehaviour
     [SerializeField] private Transform _spawnPlayerPosition;
     [SerializeField] private List<GameObject> _objects;
     [SerializeField] private List<Transform> _objectPositions;
+    private int _startScareLevel = 5;
 
     private void Start()
     {
@@ -15,12 +16,13 @@ public class LevelView : MonoBehaviour
         }
 
         int numberRoom = LoadScene.Instance.NumberRoom;
-        if (tag == "Hall" && numberRoom > 10)
+        if (tag == "Hall" && numberRoom > _startScareLevel)
         {
-            int scareRandom = Random.Range(0, 3);
-            if (scareRandom == 2)
+            int scareRandom = Random.Range(0, 2);
+            if (scareRandom == 1)
             {
                 int indexPosition = Random.Range(0, _objectPositions.Count);
+                Debug.Log($"{indexPosition},{_objects.Count},{_objectPositions.Count}");
                 Instantiate(_objects[0], _objectPositions[indexPosition].position, Quaternion.identity);
             }
         }
@@ -30,11 +32,11 @@ public class LevelView : MonoBehaviour
     {
         if (_objects.Count == 0) return;
 
-        for (int i = 0; i < _objects.Count; i++)
+        for (int i = 0; i < _objectPositions.Count; i++)
         {
             int idObject = Random.Range(0, _objects.Count);
-            int indexPosition = Random.Range(0, _objectPositions.Count);
-            Instantiate(_objects[idObject], _objectPositions[indexPosition].position, Quaternion.identity);
+            Debug.Log($"{idObject}, {i}, {_objectPositions.Count}");
+            Instantiate(_objects[idObject], _objectPositions[i].position, Quaternion.identity);
         }
     }
 

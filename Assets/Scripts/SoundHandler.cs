@@ -1,13 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-
 public class SoundHandler : MonoBehaviour
 {
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
 
-    private void Awake()
+    private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _audioClip;

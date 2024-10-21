@@ -53,7 +53,7 @@ public class Scare : MonoBehaviour
             int index = _random.Next(0, _scareTexture2D.Count + 1);
            
             Texture faceTexture = _scareTexture2D[index].FaceTexture2D;
-            Texture backTexture = _scareTexture2D[index].FaceTexture2D;
+            Texture backTexture = _scareTexture2D[index].BackTexture2D;
             
             _faceMaterial.SetTexture("_MainTex", faceTexture);
             _backMaterial.SetTexture("_MainTex", backTexture);

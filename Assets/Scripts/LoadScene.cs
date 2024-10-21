@@ -17,9 +17,11 @@ public class LoadScene : MonoBehaviour, ILoadRoom
 
     private int _levelIndex;
     private int _roomNumber;
-    private int _mainRoom = 6;
-    private int _tirgerRoom = 2;
-    private int _roomOne = 1;
+    private int _finishRoomIndex = 6;
+    private int _startFinushRoom = 50;
+    private int _startRoom = 1;
+    private int _roomTutorialIndex = 7;
+
     public int NumberRoom=>_roomNumber;
 
     private void Awake()
@@ -47,22 +49,25 @@ public class LoadScene : MonoBehaviour, ILoadRoom
 
     private void Initialize()
     {
-        if (Instance.NumberRoom == _tirgerRoom)
+        if (Instance.NumberRoom == _startFinushRoom)
         {
-            _levelIndex = _mainRoom;
+            _levelIndex = _finishRoomIndex;
         }
         else
         {
-            _levelIndex = Random.Range(0, _levelView.Count - 1);
+            _levelIndex = (Instance.NumberRoom == _startRoom) ? _roomTutorialIndex : Random.Range(0, _levelView.Count - 2);
         }
 
         Instantiate(_levelView[_levelIndex], _roomPosition);
         SetNewPositionPlayer();
+
+        
     }
 
     public void NextRoom()
     {
         StartCoroutine(AsyncLoad());
+        _roomNumber++;
     }
 
     private void SetNewPositionPlayer()=> _playerPosition.position = _levelView[_levelIndex].PlayerPosition.position;
@@ -76,12 +81,13 @@ public class LoadScene : MonoBehaviour, ILoadRoom
         {
             yield return null;
         }
-        _roomNumber++;
+
+
         NewRoom?.Invoke(_roomNumber);
     }
 
-    public void LoadRoom()
+    public void LoadFirstRoom()
     {
-        SceneManager.LoadSceneAsync(_roomOne);
+        SceneManager.LoadSceneAsync(_startRoom);
     }
 }
