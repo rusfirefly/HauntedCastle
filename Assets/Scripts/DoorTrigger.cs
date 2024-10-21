@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorTrigger : Interactable
 {
@@ -27,5 +28,9 @@ public class DoorTrigger : Interactable
         _isOpenDoor = true;
     }
 
-
+    public void NextRoom()
+    {
+        ILoadRoom newRoom = FindObjectOfType<LoadScene>();
+        newRoom.NextRoom();
+    }
 }

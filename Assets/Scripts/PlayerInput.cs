@@ -1,8 +1,9 @@
-
+using System;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    public static event Action CloseButton;
     private Interactable _interactableObject;
 
     public void CheckInteractableKeyInput()
@@ -13,6 +14,11 @@ public class PlayerInput : MonoBehaviour
             {
                 _interactableObject.OnInteract();
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            CloseButton.Invoke();
         }
     }
 

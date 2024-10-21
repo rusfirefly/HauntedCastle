@@ -9,15 +9,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
+
 
 
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
     using System.Net;
 #endif
 
 public class FirstPersonController : MonoBehaviour
 {
+    public static event Action DeathPlayer;
     private SoundHandler _soundHandler;
     private PlayerInput _playerInput;
 
@@ -460,6 +463,12 @@ public class FirstPersonController : MonoBehaviour
         }
 
         #endregion
+    }
+
+    public void Death()
+    {
+        Debug.Log("Death");
+        DeathPlayer?.Invoke();
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
