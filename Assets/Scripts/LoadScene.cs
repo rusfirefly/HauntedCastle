@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class LoadScene : MonoBehaviour, ILoadRoom
 {
+    private enum SceneID {FinishRoom = 6, StartFinishRoomNumber = 3, StartRoom = 1, RoomTutorial = 7, MainScene = 0}
+
     public static LoadScene Instance;
     public event Action<int> NewRoom;
 
@@ -17,13 +19,9 @@ public class LoadScene : MonoBehaviour, ILoadRoom
 
     private int _levelIndex;
     private int _roomNumber;
-    private int _finishRoomIndex = 6;
-    private int _startFinushRoom = 3;
-    private int _startRoom = 1;
-    private int _roomTutorialIndex = 7;
 
     public int NumberRoom=>_roomNumber;
-
+ 
     private void Awake()
     {
         if (_isMainMenu) return;
@@ -49,20 +47,19 @@ public class LoadScene : MonoBehaviour, ILoadRoom
 
     private void Initialize()
     {
-        if (Instance.NumberRoom == _startFinushRoom)
+        if (Instance.NumberRoom == (int)SceneID.StartFinishRoomNumber)
         {
-            _levelIndex = _finishRoomIndex;
+            _levelIndex = (int)SceneID.FinishRoom;
+            //RenderSettings.fogDensity = 0.1f;
+            RenderSettings.fogColor = Random.ColorHSV();
         }
         else
         {
-            _levelIndex = (Instance.NumberRoom == _startRoom) ? _roomTutorialIndex : Random.Range(0, _levelView.Count - 2);
+           _levelIndex = (Instance.NumberRoom == (int)SceneID.StartRoom) ? (int)SceneID.RoomTutorial : Random.Range(0, _levelView.Count - 2);
         }
 
         Instantiate(_levelView[_levelIndex], _roomPosition);
-        Debug.Log(_levelView[_levelIndex].name);
         SetNewPositionPlayer();
-
-        
     }
 
     public void NextRoom()
@@ -89,6 +86,19 @@ public class LoadScene : MonoBehaviour, ILoadRoom
 
     public void LoadFirstRoom()
     {
-        SceneManager.LoadSceneAsync(_startRoom);
+        SceneManager.LoadSceneAsync((int)SceneID.StartRoom);
     }
+
+    public void RestartGame()
+    {
+        Instance._roomNumber = 1;
+        LoadFirstRoom();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void LoadSceneMain() => SceneManager.LoadSceneAsync((int)SceneID.MainScene);
 }

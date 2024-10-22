@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8886287829014241881
 Transform:
   m_ObjectHideFlags: 0
@@ -12939,7 +12939,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -14246,7 +14246,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.1
     textureMode: 0
-    textureScale: {x: 1, y: 1}
+    textureScale: {x: 0.1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -14325,7 +14325,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
+      scalar: 0.08
       minScalar: 0.05
       maxCurve:
         serializedVersion: 2

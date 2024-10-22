@@ -10,6 +10,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System;
+using Unity.VisualScripting;
+
 
 
 
@@ -26,6 +28,8 @@ public class FirstPersonController : MonoBehaviour
 
     private Rigidbody rb;
     private bool _isStickyPuddle;
+
+    private bool _isDeath;
 
     #region Camera Movement Variables
 
@@ -217,12 +221,30 @@ public class FirstPersonController : MonoBehaviour
 
     float camRotation;
 
+    private void OnEnable()
+    {
+        PlayerInput.EscPresed += OnEscPresed;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.EscPresed -= OnEscPresed;
+    }
+
+    private void OnEscPresed(bool escPresed)
+    {
+        cameraCanMove = playerCanMove = !escPresed;
+    }
+
+
     private void Update()
     {
+
+        if (_isDeath) return;
         #region Camera
 
         // Control camera movement
-        if(cameraCanMove)
+        if (cameraCanMove)
         {
             yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
@@ -382,11 +404,12 @@ public class FirstPersonController : MonoBehaviour
         }
 
         _playerInput.CheckInteractableKeyInput();
-
+        
     }
 
     void FixedUpdate()
     {
+        if (_isDeath) return;
         #region Movement
 
         if (playerCanMove)
@@ -493,7 +516,8 @@ public class FirstPersonController : MonoBehaviour
 
     public void Death()
     {
-        Debug.Log("Death");
+        enabled = false;
+        Time.timeScale = 0;
         DeathPlayer?.Invoke();
     }
 

@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public static event Action CloseButton;
+    public static event Action<bool> EscPresed;
+    public static event Action MainMenu;
     private Interactable _interactableObject;
+    private bool _isEscPresed;
+
 
     public void CheckInteractableKeyInput()
     {
@@ -15,12 +18,16 @@ public class PlayerInput : MonoBehaviour
                 _interactableObject.OnInteract();
             }
         }
-
-        if(Input.GetKeyDown(KeyCode.Tab))
+       
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            CloseButton.Invoke();
+            _isEscPresed = true;
+            MainMenu?.Invoke();
+            EscPresed?.Invoke(_isEscPresed);
         }
     }
+    
+    public bool IsEscPresed => _isEscPresed;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -37,5 +44,11 @@ public class PlayerInput : MonoBehaviour
             _interactableObject.HideMessage();
 
         _interactableObject = null;
+    }
+
+    public void Resume()
+    {
+        _isEscPresed = false;
+        EscPresed?.Invoke(_isEscPresed);
     }
 }

@@ -5,50 +5,39 @@ public class HudHandler : MonoBehaviour
 {
     [SerializeField] private TMP_Text _roomNumber;
     [SerializeField] private GameObject _message;
+    [SerializeField] private GameObject _gameOver;
+    [SerializeField] private GameObject _menu;
+    [SerializeField] private HudPresenter _presenter;
 
     public bool IsMessage { get; private set; }
 
     private void Start()
     {
+        _presenter.Inittialize(this);
         HideMessage();
     }
 
-    private void OnEnable()
-    {
-        if (LoadScene.Instance)
-            LoadScene.Instance.NewRoom += OnNewRoom;
-
-        PlayerInput.CloseButton += OnCloseButton;
-    }
-
-    private void OnDisable()
-    {
-        if (LoadScene.Instance)
-            LoadScene.Instance.NewRoom -= OnNewRoom;
-
-        PlayerInput.CloseButton += OnCloseButton;
-    }
-
-    private void OnCloseButton()
-    {
-        HideMessage();
-    }
-
-    private void OnNewRoom(int numberRoom)
-    {
-        _roomNumber.text = $"Room: {numberRoom}";
-    }
+    public void SetNewRoomText(int numberRoom)=>_roomNumber.text = $"Room: {numberRoom}";
 
     public void ShowMessage()
     {
-        IsMessage = true;
-        _message.gameObject.SetActive(true);
+        SetVisiblePaperMessage(true);
     }
 
     public void HideMessage() 
     {
-        IsMessage = false;
-        _message.gameObject.SetActive(false); 
+        SetVisiblePaperMessage(false);
     }
     
+    public void SetVisibleGameOverMessage(bool visible) => _gameOver.gameObject.SetActive(visible);
+
+    public void SetVisibleMenu(bool visible)=> _menu.gameObject.SetActive(visible);
+    
+    private void SetVisiblePaperMessage(bool visible)
+    {
+        IsMessage = visible;
+        _message.gameObject.SetActive(visible);
+    }
+
+
 }

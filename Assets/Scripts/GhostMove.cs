@@ -18,8 +18,11 @@ public class GhostMove : MonoBehaviour
     {
         if (_isMoving == false) return;
 
-        transform.transform.LookAt(_player.transform.position);
-        
+        if (_player)
+        {
+            transform.transform.LookAt(_player.transform.position);
+        }
+
         MoveGhost();
         
         Collider[] colliders = Physics.OverlapSphere(transform.position, _radiusAttack, _playerMask);
