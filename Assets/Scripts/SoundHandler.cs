@@ -6,7 +6,7 @@ public class SoundHandler : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
 
-    private void Start()
+    public void Initialize()
     {
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _audioClip;

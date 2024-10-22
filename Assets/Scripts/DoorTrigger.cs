@@ -10,8 +10,15 @@ public class DoorTrigger : Interactable
     private void Awake()
     {
         _soundHandler = GetComponent<SoundHandler>();
+        
+        if (_soundHandler)
+        {
+            _soundHandler.Initialize();
+        }
+
         _animator = GetComponent<Animator>();
         Initizlize();
+
     }
 
     public override void OnInteract()

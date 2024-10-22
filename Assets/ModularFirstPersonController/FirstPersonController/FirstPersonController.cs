@@ -25,6 +25,7 @@ public class FirstPersonController : MonoBehaviour
     private PlayerInput _playerInput;
 
     private Rigidbody rb;
+    private bool _isStickyPuddle;
 
     #region Camera Movement Variables
 
@@ -157,6 +158,11 @@ public class FirstPersonController : MonoBehaviour
         {
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
+        }
+
+        if (_soundHandler)
+        {
+            _soundHandler.Initialize();
         }
     }
 
@@ -459,10 +465,30 @@ public class FirstPersonController : MonoBehaviour
                     _soundHandler.Play();
                 }
             }
-            
         }
 
         #endregion
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "StickyPuddle"&& _isStickyPuddle == false)
+        {
+            walkSpeed /= 2;
+            sprintSpeed/= 3;
+
+            _isStickyPuddle = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(_isStickyPuddle)
+        {
+            walkSpeed *= 2;
+            sprintSpeed *= 3;
+            _isStickyPuddle = false;    
+        }
     }
 
     public void Death()

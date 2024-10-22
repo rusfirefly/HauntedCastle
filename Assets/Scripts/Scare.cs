@@ -32,8 +32,9 @@ public class Scare : MonoBehaviour
 
         SelectRandomScare();
 
-       _scareView.Hide();
+        _scareView.Hide();
         _sound = GetComponent<SoundHandler>();
+        _sound.Initialize();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,7 +42,14 @@ public class Scare : MonoBehaviour
         if (_isShowScare) return;
 
        _scareView.Show();
-       _sound.Play();
+        if (_sound)
+        {
+            _sound.Play();
+        }
+        else
+        {
+            Debug.Log("sound no found");
+        }
 
         _isShowScare = true;
     }
@@ -50,7 +58,7 @@ public class Scare : MonoBehaviour
     {
         if(_scareTexture2D.Count > 0)
         {
-            int index = _random.Next(0, _scareTexture2D.Count + 1);
+            int index = _random.Next(0, _scareTexture2D.Count);
            
             Texture faceTexture = _scareTexture2D[index].FaceTexture2D;
             Texture backTexture = _scareTexture2D[index].BackTexture2D;

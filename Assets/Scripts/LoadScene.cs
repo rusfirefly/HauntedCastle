@@ -18,7 +18,7 @@ public class LoadScene : MonoBehaviour, ILoadRoom
     private int _levelIndex;
     private int _roomNumber;
     private int _finishRoomIndex = 6;
-    private int _startFinushRoom = 50;
+    private int _startFinushRoom = 3;
     private int _startRoom = 1;
     private int _roomTutorialIndex = 7;
 
@@ -59,6 +59,7 @@ public class LoadScene : MonoBehaviour, ILoadRoom
         }
 
         Instantiate(_levelView[_levelIndex], _roomPosition);
+        Debug.Log(_levelView[_levelIndex].name);
         SetNewPositionPlayer();
 
         
