@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Paper : Interactable
 {
+    [SerializeField] private AnimationBlock _block;
     private GhostMove _ghostMove;
     private HudHandler _hudHandler;
 
@@ -15,6 +16,7 @@ public class Paper : Interactable
     public override void OnInteract()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        _block.DisableKinematic();
         _hudHandler.ShowMessage();
     }
 

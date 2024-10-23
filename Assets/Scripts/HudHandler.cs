@@ -7,6 +7,7 @@ public class HudHandler : MonoBehaviour
     [SerializeField] private GameObject _message;
     [SerializeField] private GameObject _gameOver;
     [SerializeField] private GameObject _menu;
+    [SerializeField] private GameObject _winMenu;
     [SerializeField] private HudPresenter _presenter;
 
     public bool IsMessage { get; private set; }
@@ -33,11 +34,11 @@ public class HudHandler : MonoBehaviour
 
     public void SetVisibleMenu(bool visible)=> _menu.gameObject.SetActive(visible);
     
+    public void SetVisibleWinGame(bool visible)=> _winMenu.gameObject.SetActive(visible);
+
     private void SetVisiblePaperMessage(bool visible)
     {
         IsMessage = visible;
         _message.gameObject.SetActive(visible);
     }
-
-
 }

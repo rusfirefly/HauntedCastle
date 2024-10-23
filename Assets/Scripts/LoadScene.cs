@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class LoadScene : MonoBehaviour, ILoadRoom
 {
-    private enum SceneID {FinishRoom = 6, StartFinishRoomNumber = 3, StartRoom = 1, RoomTutorial = 7, MainScene = 0}
+    private enum SceneID {FinishRoom = 6, StartFinishRoomNumber = 35, StartRoom = 1, RoomTutorial = 7, MainScene = 0}
 
     public static LoadScene Instance;
     public event Action<int> NewRoom;
@@ -17,6 +18,7 @@ public class LoadScene : MonoBehaviour, ILoadRoom
     [SerializeField] private Transform _roomPosition;
     [SerializeField] private bool _isMainMenu;
 
+    private IRestart[] restarts;
     private int _levelIndex;
     private int _roomNumber;
 
@@ -40,8 +42,9 @@ public class LoadScene : MonoBehaviour, ILoadRoom
             }
         }
 
-        
         Initialize();
+
+        restarts = FindAllRestaringObjects();
         NewRoom?.Invoke(_roomNumber);
     }
 
@@ -50,7 +53,7 @@ public class LoadScene : MonoBehaviour, ILoadRoom
         if (Instance.NumberRoom == (int)SceneID.StartFinishRoomNumber)
         {
             _levelIndex = (int)SceneID.FinishRoom;
-            //RenderSettings.fogDensity = 0.1f;
+            RenderSettings.fogDensity = 0.089f;
             RenderSettings.fogColor = Random.ColorHSV();
         }
         else
@@ -92,6 +95,15 @@ public class LoadScene : MonoBehaviour, ILoadRoom
     public void RestartGame()
     {
         Instance._roomNumber = 1;
+        
+        Debug.Log(restarts.Length);
+
+        foreach (IRestart restart in restarts)
+        {
+            restart.Restart();
+        }
+
+        Time.timeScale = 1;
         LoadFirstRoom();
     }
 
@@ -101,4 +113,6 @@ public class LoadScene : MonoBehaviour, ILoadRoom
     }
 
     public void LoadSceneMain() => SceneManager.LoadSceneAsync((int)SceneID.MainScene);
+
+    private IRestart[] FindAllRestaringObjects() => FindObjectsOfType<MonoBehaviour>().OfType<IRestart>().ToArray();
 }

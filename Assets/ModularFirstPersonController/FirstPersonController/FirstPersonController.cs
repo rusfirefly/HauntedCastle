@@ -20,7 +20,7 @@ using UnityEditor;
     using System.Net;
 #endif
 
-public class FirstPersonController : MonoBehaviour
+public class FirstPersonController : MonoBehaviour, IRestart
 {
     public static event Action DeathPlayer;
     private SoundHandler _soundHandler;
@@ -217,6 +217,11 @@ public class FirstPersonController : MonoBehaviour
         }
 
         #endregion
+    }
+
+    public void DisableInput()
+    {
+        cameraCanMove = playerCanMove = false;
     }
 
     float camRotation;
@@ -514,10 +519,18 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    public void Restart()
+    {
+        _isDeath = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        cameraCanMove = playerCanMove = true;
+    }
+
     public void Death()
     {
-        enabled = false;
-        Time.timeScale = 0;
+        _isDeath = true;
+        cameraCanMove = playerCanMove = false;
+        Cursor.lockState = CursorLockMode.Confined;
         DeathPlayer?.Invoke();
     }
 

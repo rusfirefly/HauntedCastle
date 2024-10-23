@@ -22,7 +22,7 @@ public class LevelView : MonoBehaviour
         if (tag == "Hall" && numberRoom > _startScareLevel)
         {
             ScareVisible scareRandom = (ScareVisible)Random.Range(0, 2);
-
+            Debug.Log(scareRandom);
             if (scareRandom == ScareVisible.Show)
             {
                 int indexPosition = Random.Range(0, _objectPositions.Count);

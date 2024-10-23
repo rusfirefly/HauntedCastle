@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(HudHandler))]
@@ -24,6 +25,7 @@ public class HudPresenter: MonoBehaviour
 
         PlayerInput.MainMenu += OnMainMenu;
         FirstPersonController.DeathPlayer += OnDeathPlayer;
+        FinishHandler.Finish += OnFinish;
     }
 
     private void OnMainMenu()
@@ -40,13 +42,21 @@ public class HudPresenter: MonoBehaviour
         }
 
         PlayerInput.MainMenu -= OnMainMenu;
-        FirstPersonController.DeathPlayer += OnDeathPlayer;
+        FirstPersonController.DeathPlayer -= OnDeathPlayer;
+        FinishHandler.Finish -= OnFinish;
+    }
+
+    private void OnFinish()
+    {
+        Time.timeScale = 0;
+        _hudHandler.SetVisibleWinGame(true);
     }
 
     private void OnDeathPlayer()
     {
         if (_hudHandler)
         {
+            //Time.timeScale = 0;
             _hudHandler.SetVisibleGameOverMessage(true);
         }
     }
